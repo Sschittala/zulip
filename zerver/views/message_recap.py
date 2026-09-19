@@ -23,7 +23,8 @@ def generate_recap(messages: list[dict[str, object]]) -> str:
     prompt = (
         "You are generating a concise recap of unread Zulip messages. "
         "Summarize the important information, decisions, questions, and action items. "
-        "Do not invent information. Keep the recap brief and easy to scan.\n\n"
+        "Do not invent information. Keep the recap brief and easy to scan. "
+        "Return plain text only. Do not use Markdown, asterisks, headings, tables, or HTML.\n\n"
         f"Unread messages:\n{json.dumps(messages)}"
     )
 

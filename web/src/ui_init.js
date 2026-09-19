@@ -58,6 +58,7 @@ import * as hashchange from "./hashchange.ts";
 import * as hotkey from "./hotkey.ts";
 import * as i18n from "./i18n.ts";
 import * as inbox_ui from "./inbox_ui.ts";
+import * as message_recap from "./message_recap.ts";
 import * as information_density from "./information_density.ts";
 import * as invite from "./invite.ts";
 import * as left_sidebar_navigation_area from "./left_sidebar_navigation_area.ts";
@@ -570,6 +571,7 @@ export async function initialize_everything(state_data) {
             const user = people.get_by_user_id(participant_user_id);
             user_card_popover.toggle_user_card_popover(avatar_element, user);
         },
+
         on_mark_pm_as_read: unread_ops.mark_pm_as_read,
         on_mark_topic_as_read: unread_ops.mark_topic_as_read,
         maybe_load_older_messages(first_unread_message_id) {
@@ -582,10 +584,19 @@ export async function initialize_everything(state_data) {
                 first_unread_message_id,
             });
         },
-        hide_other_views: inbox_ui.hide,
+        hide_other_views() {
+            inbox_ui.hide();
+            message_recap.hide();
+        },
     });
     inbox_ui.initialize({
         hide_other_views: recent_view_ui.hide,
+    });
+    message_recap.initialize({
+        hide_other_views() {
+            inbox_ui.hide();
+            recent_view_ui.hide();
+        },
     });
     alert_words.initialize(state_data.alert_words);
     saved_snippets.initialize(state_data.saved_snippets);

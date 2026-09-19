@@ -19,6 +19,7 @@ import * as echo from "./echo.ts";
 import type {PostMessageAPIData} from "./echo.ts";
 import * as message_events from "./message_events.ts";
 import type {LocalMessage} from "./message_helper.ts";
+import * as topic_title_improver from "./topic_title_improver.ts";
 import * as message_viewport from "./message_viewport.ts";
 import * as onboarding_steps from "./onboarding_steps.ts";
 import * as reload from "./reload.ts";
@@ -140,6 +141,10 @@ export function send_message_success(
     drafts.draft_model.deleteDrafts([sent_message.draft_id]);
 
     if (sent_message.type === "stream") {
+        topic_title_improver.check_topic_title(
+            sent_message.stream_id,
+            sent_message.topic,
+        );
         if (data.automatic_new_visibility_policy) {
             if (!onboarding_steps.ONE_TIME_NOTICES_TO_DISPLAY.has("visibility_policy_banner")) {
                 return;

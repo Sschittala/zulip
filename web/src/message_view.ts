@@ -4,6 +4,7 @@ import {$} from "jquery";
 import assert from "minimalistic-assert";
 import * as z from "zod/mini";
 
+import * as message_recap from "./message_recap.ts";
 import * as activity_ui from "./activity_ui.ts";
 import * as blueslip from "./blueslip.ts";
 import * as browser_history from "./browser_history.ts";
@@ -534,6 +535,7 @@ export let show = (raw_terms: NarrowTerm[], show_opts: ShowMessageViewOpts): voi
 
     const coming_from_recent_view = recent_view_util.is_visible();
     const coming_from_inbox = inbox_util.is_visible();
+    const coming_from_message_recap = message_recap.is_visible();
 
     const preserve_zoomed_in_channel =
         stream_list.is_zoomed_in() &&
@@ -709,6 +711,8 @@ export let show = (raw_terms: NarrowTerm[], show_opts: ShowMessageViewOpts): voi
             recent_view_ui.hide();
         } else if (coming_from_inbox) {
             inbox_ui.hide();
+        }  else if (coming_from_message_recap) {
+            message_recap.hide();
         }
 
         blueslip.debug("Narrowed", {

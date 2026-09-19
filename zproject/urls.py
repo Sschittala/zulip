@@ -15,6 +15,7 @@ from django.utils.module_loading import import_string
 from django.views.generic import RedirectView
 
 from zerver.forms import LoggingSetPasswordForm
+from zerver.views.topic_title_improver import suggest_topic_title
 from zerver.lib.integrations import INCOMING_WEBHOOK_INTEGRATIONS
 from zerver.lib.rest import rest_path
 from zerver.lib.url_redirects import DOCUMENTATION_REDIRECTS, get_integration_category_redirects
@@ -95,6 +96,7 @@ from zerver.views.navigation_views import (
     remove_navigation_view,
     update_navigation_view,
 )
+
 from zerver.views.onboarding_steps import mark_onboarding_step_as_read
 from zerver.views.presence import (
     get_presence_backend,
@@ -441,6 +443,13 @@ v1_api_and_json_patterns = [
             get_messages_recap,
             {"intentionally_undocumented"},
         ),
+    ),
+    rest_path(
+    "messages/topic-title-suggestion",
+    GET=(
+        suggest_topic_title,
+        {"intentionally_undocumented"},
+    ),
     ),
     rest_path("messages/render", POST=render_message_backend),
     rest_path("messages/flags", POST=update_message_flags),

@@ -1,0 +1,21 @@
+<div class="message-recap-summary">
+    {{rendered_markdown recap}}
+</div>
+
+<hr>
+
+<p><strong>Unread messages: {{unread_count}}</strong></p>
+
+<ul>
+    {{#each messages}}
+        <li>
+            <a href="{{url}}">Message {{id}}</a> — {{sender}}
+            {{#if channel}}
+                in {{channel}}
+            {{/if}}
+            {{#if topic}}
+                &gt; {{topic}}
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>

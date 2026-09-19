@@ -223,6 +223,13 @@ export function highlight_inbox_view(): void {
         resize.resize_stream_filters_container();
     }, 0);
 }
+export function highlight_message_recap_view(): void {
+    select_top_left_corner_item(".top_left_message_recap");
+
+    setTimeout(() => {
+        resize.resize_stream_filters_container();
+    }, 0);
+}
 
 export function highlight_recent_view(): void {
     select_top_left_corner_item(".top_left_recent_view");

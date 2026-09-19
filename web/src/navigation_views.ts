@@ -21,6 +21,22 @@ export type BuiltInViewBasicMetadata = {
 };
 
 export const built_in_views_meta_data: Record<string, BuiltInViewBasicMetadata> = {
+    message_recap: {
+        fragment: "message-recap",
+        name: $t({defaultMessage: "Message Recap"}),
+        is_pinned: true,
+        icon: "zulip-icon-inbox",
+        css_class_suffix: "message_recap",
+        tooltip_template_id: "inbox-tooltip-template",
+        has_unread_count: false,
+        unread_count_type: "",
+        supports_masked_unread: false,
+        hidden_for_spectators: true,
+        menu_icon_class: "",
+        menu_aria_label: "",
+        home_view_code: "",
+        prioritize_in_condensed_view: true,
+    },
     inbox: {
         fragment: "inbox",
         name: $t({defaultMessage: "Inbox"}),
