@@ -1,3 +1,6 @@
+
+
+
 # Implementation
 
 ## Feature 1: Message Recap
@@ -28,4 +31,5 @@ Topic analysis is triggered after a stream/channel message is successfully poste
 
 The frontend logic is implemented in web/src/topic_title_improver.ts and is triggered from web/src/compose.ts after a stream/channel message is successfully sent. When the backend detects topic drift, the frontend displays a dialog box containing the suggested replacement title, and also gives a brief message stating that the topic is being drifted. The feature suggests a title rather than automatically renaming the topic, leaving the final decision with the user to continue with the drifted topic or the previous topic. If no drift is detected, the dialog box will not get displayed.
 
-**Demo Video:** 
+**Demo Video:** https://github.com/user-attachments/assets/e6afd8b4-6274-4b4b-bd98-e82479af77bd
+
